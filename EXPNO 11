@@ -1,0 +1,10 @@
+START
+Create thread T1
+Create thread T2
+Create thread T3
+
+Each thread prints its name and performs a task
+
+Wait for all threads to complete (join)
+
+STOP
