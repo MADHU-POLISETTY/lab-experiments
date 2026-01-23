@@ -1,0 +1,25 @@
+START
+Read number of frames F
+Read number of pages N
+Read reference string
+
+Initialize frames empty
+Initialize time array
+page_fault = 0
+
+FOR each page
+    IF page exists in frames
+        Update its recent time
+    ELSE
+        IF empty frame available
+            Insert page
+        ELSE
+            Find least recently used page
+            Replace it
+        ENDIF
+        page_fault++
+    ENDIF
+ENDFOR
+
+Display total page faults
+STOP
