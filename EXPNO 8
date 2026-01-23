@@ -1,0 +1,13 @@
+Start
+Initialize 5 philosophers and 5 chopsticks
+
+For each philosopher i:
+    Think
+    Pick left chopstick
+    Pick right chopstick
+    Eat
+    Put down left chopstick
+    Put down right chopstick
+
+Repeat
+Stop
