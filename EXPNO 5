@@ -1,0 +1,26 @@
+Start
+Read n
+Read burst time of each process
+Read time quantum tq
+
+Initialize remaining_time = burst_time
+time = 0
+
+While (all processes not completed)
+    For i = 1 to n
+        If remaining_time[i] > 0
+            If remaining_time[i] > tq
+                time = time + tq
+                remaining_time[i] = remaining_time[i] - tq
+            Else
+                time = time + remaining_time[i]
+                completion_time[i] = time
+                remaining_time[i] = 0
+End While
+
+For i = 1 to n
+    turnaround_time[i] = completion_time[i]
+    waiting_time[i] = turnaround_time[i] - burst_time[i]
+
+Print WT and TAT
+Stop
