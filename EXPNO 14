@@ -1,0 +1,24 @@
+START
+Read number of frames F
+Read number of pages N
+Read reference string
+
+Initialize frames empty
+page_fault = 0
+
+FOR each page
+    IF page exists in frames
+        continue
+    ELSE
+        IF empty frame exists
+            Insert page
+        ELSE
+            For each page in frame find future use
+            Replace the page which is not used for longest time
+        ENDIF
+        page_fault++
+    ENDIF
+ENDFOR
+
+Display total page faults
+STOP
