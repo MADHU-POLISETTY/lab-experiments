@@ -1,0 +1,21 @@
+START
+Read number of frames F
+Read number of pages N
+Read page reference string
+
+Initialize frames as empty
+page_fault = 0
+index = 0
+
+FOR each page in reference string
+    IF page is already in frames
+        continue
+    ELSE
+        Replace frame[index] with page
+        index = (index + 1) mod F
+        page_fault++
+    ENDIF
+ENDFOR
+
+Display total page faults
+STOP
