@@ -1,0 +1,15 @@
+Start
+Create shared memory segment
+Fork process
+
+If Parent process:
+    Write message into shared memory
+    Wait
+
+If Child process:
+    Read message from shared memory
+    Display message
+
+Detach shared memory
+Delete shared memory
+Stop
