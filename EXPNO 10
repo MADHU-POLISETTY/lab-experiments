@@ -1,0 +1,19 @@
+Start
+Initialize buffer size N
+Initialize empty = N, full = 0, mutex = 1
+
+Producer:
+    wait(empty)
+    wait(mutex)
+    Add item to buffer
+    signal(mutex)
+    signal(full)
+
+Consumer:
+    wait(full)
+    wait(mutex)
+    Remove item from buffer
+    signal(mutex)
+    signal(empty)
+
+Stop
