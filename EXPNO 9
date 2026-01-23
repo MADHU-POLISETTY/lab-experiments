@@ -1,0 +1,22 @@
+Start
+Read n processes, m resources
+Read Allocation matrix
+Read Max matrix
+Read Available resources
+
+Compute Need = Max - Allocation
+
+Set Finish[i] = false for all processes
+Work = Available
+
+While (exists process i with Finish[i]=false and Need[i] <= Work)
+    Work = Work + Allocation[i]
+    Finish[i] = true
+    Add i to Safe Sequence
+
+If all Finish[i] == true
+    System is in Safe State
+    Print Safe Sequence
+Else
+    System is Unsafe
+Stop
