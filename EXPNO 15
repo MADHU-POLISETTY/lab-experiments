@@ -1,0 +1,10 @@
+START
+Read starting block
+Read number of blocks required
+
+FOR i = 0 to (blocks-1)
+    Allocate block = starting block + i
+    Display allocated block
+ENDFOR
+
+STOP
