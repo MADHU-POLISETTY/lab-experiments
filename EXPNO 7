@@ -1,15 +1,19 @@
-Start
-Create shared memory segment
-Fork process
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <string.h>
 
-If Parent process:
-    Write message into shared memory
-    Wait
+int main() {
+    key_t key = ftok("shmfile", 65);
+    int shmid = shmget(key, 1024, 0666 | IPC_CREAT);
 
-If Child process:
-    Read message from shared memory
-    Display message
+    char *str = (char *)shmat(shmid, (void *)0, 0);
 
-Detach shared memory
-Delete shared memory
-Stop
+    printf("Write Data: ");
+    fgets(str, 1024, stdin);
+
+    printf("Data written in memory: %s\n", str);
+
+    shmdt(str);
+    return 0;
+}
