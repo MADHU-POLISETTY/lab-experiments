@@ -1,10 +1,32 @@
-START
-Create thread T1
-Create thread T2
-Create thread T3
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
 
-Each thread prints its name and performs a task
+void* threadFunction(void* arg) {
+    int id = *(int*)arg;
+    printf("Thread %d started\n", id);
 
-Wait for all threads to complete (join)
+    for (int i = 1; i <= 5; i++) {
+        printf("Thread %d is running: %d\n", id, i);
+        sleep(1);
+    }
 
-STOP
+    printf("Thread %d finished\n", id);
+    return NULL;
+}
+
+int main() {
+    pthread_t t1, t2, t3;
+    int id1 = 1, id2 = 2, id3 = 3;
+
+    pthread_create(&t1, NULL, threadFunction, &id1);
+    pthread_create(&t2, NULL, threadFunction, &id2);
+    pthread_create(&t3, NULL, threadFunction, &id3);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+    pthread_join(t3, NULL);
+
+    printf("All threads completed.\n");
+    return 0;
+}
