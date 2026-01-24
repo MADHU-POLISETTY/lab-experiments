@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <string.h>
+
+struct File {
+    char name[50];
+};
+
+int main() {
+    struct File files[50];
+    int count = 0, choice;
+    char fname[50];
+    int i, found;
+
+    while (1) {
+        printf("\n--- Single Level Directory ---\n");
+        printf("1. Create File\n2. Delete File\n3. Search File\n4. Display Files\n5. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter file name to create: ");
+                scanf("%s", fname);
+
+                found = 0;
+                for (i = 0; i < count; i++) {
+                    if (strcmp(files[i].name, fname) == 0) {
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if (found)
+                    printf("File already exists!\n");
+                else {
+                    strcpy(files[count].name, fname);
+                    count++;
+                    printf("File created successfully.\n");
+                }
+                break;
+
+            case 2:
+                printf("Enter file name to delete: ");
+                scanf("%s", fname);
+
+                found = 0;
+                for (i = 0; i < count; i++) {
+                    if (strcmp(files[i].name, fname) == 0) {
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    printf("File not found!\n");
+                else {
+                    for (int j = i; j < count - 1; j++) {
+                        files[j] = files[j + 1];
+                    }
+                    count--;
+                    printf("File deleted successfully.\n");
+                }
+                break;
+
+            case 3:
+                printf("Enter file name to search: ");
+                scanf("%s", fname);
+
+                found = 0;
+                for (i = 0; i < count; i++) {
+                    if (strcmp(files[i].name, fname) == 0) {
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if (found)
+                    printf("File found!\n");
+                else
+                    printf("File not found!\n");
+                break;
+
+            case 4:
+                printf("\nFiles in Directory:\n");
+                if (count == 0)
+                    printf("No files available.\n");
+                else {
+                    for (i = 0; i < count; i++)
+                        printf("%s\n", files[i].name);
+                }
+                break;
+
+            case 5:
+                return 0;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+    }
+}
