@@ -1,25 +1,53 @@
-START
-Read number of frames F
-Read number of pages N
-Read reference string
+#include <stdio.h>
 
-Initialize frames empty
-Initialize time array
-page_fault = 0
+int main() {
+    int pages[50], frames[10], recent[10];
+    int n, f, i, j, pageFaults = 0;
 
-FOR each page
-    IF page exists in frames
-        Update its recent time
-    ELSE
-        IF empty frame available
-            Insert page
-        ELSE
-            Find least recently used page
-            Replace it
-        ENDIF
-        page_fault++
-    ENDIF
-ENDFOR
+    printf("Enter number of pages: ");
+    scanf("%d", &n);
 
-Display total page faults
-STOP
+    printf("Enter page reference string:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &pages[i]);
+
+    printf("Enter number of frames: ");
+    scanf("%d", &f);
+
+    for (i = 0; i < f; i++) {
+        frames[i] = -1;
+        recent[i] = 0;
+    }
+
+    for (i = 0; i < n; i++) {
+        int found = 0;
+
+        for (j = 0; j < f; j++) {
+            if (frames[j] == pages[i]) {
+                found = 1;
+                recent[j] = i + 1;
+                break;
+            }
+        }
+
+        if (!found) {
+            int min = 0;
+            for (j = 1; j < f; j++) {
+                if (recent[j] < recent[min])
+                    min = j;
+            }
+
+            frames[min] = pages[i];
+            recent[min] = i + 1;
+            pageFaults++;
+        }
+
+        printf("Frames: ");
+        for (j = 0; j < f; j++)
+            printf("%d ", frames[j]);
+        printf("\n");
+    }
+
+    printf("\nTotal Page Faults = %d\n", pageFaults);
+    return 0;
+}
