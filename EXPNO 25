@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <sys/stat.h>
+#include <dirent.h>
+
+int main() {
+    struct stat s;
+    stat("test.txt", &s);
+    printf("Size: %ld\n", s.st_size);
+
+    DIR *d = opendir(".");
+    struct dirent *de;
+    while ((de = readdir(d)) != NULL)
+        printf("%s\n", de->d_name);
+    closedir(d);
+    return 0;
+}
