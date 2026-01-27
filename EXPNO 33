@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int pages[10] = {7,0,1,2,0};
+    int frame[3] = {-1,-1,-1};
+    int i, faults = 0;
+
+    for (i = 0; i < 5; i++) {
+        if (frame[i % 3] != pages[i]) {
+            frame[i % 3] = pages[i];
+            faults++;
+        }
+    }
+    printf("Faults: %d\n", faults);
+    return 0;
+}
