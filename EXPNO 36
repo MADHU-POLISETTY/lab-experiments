@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+struct block {
+    int data;
+    int next;
+};
+
+int main() {
+    struct block b[3] = {{1,1},{2,2},{3,-1}};
+    int i = 0;
+    while (i != -1) {
+        printf("%d ", b[i].data);
+        i = b[i].next;
+    }
+    return 0;
+}
