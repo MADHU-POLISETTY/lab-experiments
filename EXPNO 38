@@ -1,0 +1,7 @@
+#include <stdio.h>
+
+int main() {
+    int head = 50;
+    printf("SCAN executed\n");
+    return 0;
+}
