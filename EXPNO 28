@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    FILE *fp = fopen("file.txt", "r");
+    char line[100], word[20];
+    scanf("%s", word);
+
+    while (fgets(line, sizeof(line), fp))
+        if (strstr(line, word))
+            printf("%s", line);
+
+    fclose(fp);
+    return 0;
+}
